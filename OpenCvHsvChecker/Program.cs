@@ -31,8 +31,10 @@ namespace OpenCvHsvChecker
             Cv2.CvtColor(src, hsv, ColorConversionCodes.BGR2HSV, 3);
             Cv2.ImShow("hsv", hsv);
 
+            //名前つきウィンドウを作成
             Cv2.NamedWindow(WINDOW_NAME);
 
+            //ウィンドウ名を指定してスライダーを配置
             Cv2.CreateTrackbar("H_Min", WINDOW_NAME, 179, onChange: H_Min_Changed);
             Cv2.CreateTrackbar("H_Max", WINDOW_NAME, 179, onChange: H_Max_Changed);
             Cv2.CreateTrackbar("S_Min", WINDOW_NAME, 255, onChange: S_Min_Changed);
@@ -40,6 +42,7 @@ namespace OpenCvHsvChecker
             Cv2.CreateTrackbar("V_Min", WINDOW_NAME, 255, onChange: V_Min_Changed);
             Cv2.CreateTrackbar("V_Max", WINDOW_NAME, 255, onChange: V_Max_Changed);
 
+            //初期画像を表示
             Cv2.ImShow(WINDOW_NAME, src);
 
             Cv2.WaitKey();
@@ -85,14 +88,17 @@ namespace OpenCvHsvChecker
 
         static void Update()
         {
+            //HSV画像とスライダーの値からマスクを生成
             var scalar_min = new Scalar(_h_min, _s_min, _v_min);
             var scalar_max = new Scalar(_h_max, _s_max, _v_max);
             Mat mask = new Mat();
             Cv2.InRange(hsv, scalar_min, scalar_max, mask);
 
+            //マスク画像を使って元画像にフィルタをかける
             Mat dst = new Mat();
             src.CopyTo(dst, mask);
 
+            //ウィンドウの画像を更新
             Cv2.ImShow(WINDOW_NAME, dst);
         }
     }
