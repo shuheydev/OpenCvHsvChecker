@@ -14,7 +14,7 @@ namespace OpenCvHsvChecker
 
         private static Mat src = new Mat();
         private static Mat hsv = new Mat();
-        //private static Mat dst = new Mat();
+        private static Mat dst = new Mat();
 
         private const string WINDOW_NAME = "HSV Checker";
         static void Main(string[] args)
@@ -46,6 +46,8 @@ namespace OpenCvHsvChecker
             Cv2.ImShow(WINDOW_NAME, src);
 
             Cv2.WaitKey();
+
+            Cv2.ImWrite("Images/output.jpg", dst);
         }
 
         private static void V_Max_Changed(int pos, IntPtr userData)
@@ -95,8 +97,9 @@ namespace OpenCvHsvChecker
             Cv2.InRange(hsv, scalar_min, scalar_max, mask);
 
             //マスク画像を使って元画像にフィルタをかける
-            Mat dst = new Mat();
-            src.CopyTo(dst, mask);
+            //src.CopyTo(src, mask);
+            dst = new Mat();
+            Cv2.BitwiseAnd(src, src, dst, mask);
 
             //ウィンドウの画像を更新
             Cv2.ImShow(WINDOW_NAME, dst);
