@@ -21,18 +21,24 @@ namespace OpenCvHsvChecker
         {
             Console.WriteLine("Hello World!");
 
-            string inputImagePath = "Images/gauge-2.jpg";
-
-            Cv2.NamedWindow(WINDOW_NAME);
-            Cv2.CreateTrackbar("H_Min", "HSV Checker", 179, onChange: H_Min_Changed);
-            Cv2.CreateTrackbar("H_Max", "HSV Checker", 179, onChange: H_Max_Changed);
-            Cv2.CreateTrackbar("S_Min", "HSV Checker", 255, onChange: S_Min_Changed);
-            Cv2.CreateTrackbar("S_Max", "HSV Checker", 255, onChange: S_Max_Changed);
-            Cv2.CreateTrackbar("V_Min", "HSV Checker", 255, onChange: V_Min_Changed);
-            Cv2.CreateTrackbar("V_Max", "HSV Checker", 255, onChange: V_Max_Changed);
+            string inputImagePath = "Images/gauge-1.jpg";
 
             src = Cv2.ImRead(inputImagePath);
+            if (src is null)
+                return;
+            Cv2.ImShow("src", src);
+
             Cv2.CvtColor(src, hsv, ColorConversionCodes.BGR2HSV, 3);
+            Cv2.ImShow("hsv", hsv);
+
+            Cv2.NamedWindow(WINDOW_NAME);
+
+            Cv2.CreateTrackbar("H_Min", WINDOW_NAME, 179, onChange: H_Min_Changed);
+            Cv2.CreateTrackbar("H_Max", WINDOW_NAME, 179, onChange: H_Max_Changed);
+            Cv2.CreateTrackbar("S_Min", WINDOW_NAME, 255, onChange: S_Min_Changed);
+            Cv2.CreateTrackbar("S_Max", WINDOW_NAME, 255, onChange: S_Max_Changed);
+            Cv2.CreateTrackbar("V_Min", WINDOW_NAME, 255, onChange: V_Min_Changed);
+            Cv2.CreateTrackbar("V_Max", WINDOW_NAME, 255, onChange: V_Max_Changed);
 
             Cv2.ImShow(WINDOW_NAME, src);
 
