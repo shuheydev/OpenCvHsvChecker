@@ -22,14 +22,14 @@ namespace OpenCvHsvChecker
         {
             Console.WriteLine("Hello World!");
 
-            string inputImagePath = "Images/gauge-1.jpg";
+            string inputImagePath = "Images/gauge_blur.jpg";
 
             src = Cv2.ImRead(inputImagePath);
             if (src is null)
                 return;
             Cv2.ImShow("src", src);
 
-            Cv2.CvtColor(src, hsv, ColorConversionCodes.BGR2HSV, 3);
+            Cv2.CvtColor(src, hsv, ColorConversionCodes.BGR2HSV);
             Cv2.ImShow("hsv", hsv);
 
             //名前つきウィンドウを作成
@@ -103,7 +103,7 @@ namespace OpenCvHsvChecker
             Cv2.BitwiseAnd(src, src, dst, mask);
 
             //ウィンドウの画像を更新
-            Cv2.ImShow(WINDOW_NAME, dst);
+            Cv2.ImShow(WINDOW_NAME, mask);
         }
     }
 }
