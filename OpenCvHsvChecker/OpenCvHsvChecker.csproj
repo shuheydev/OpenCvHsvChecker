@@ -10,6 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Images\box_gauge.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\gauge-1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

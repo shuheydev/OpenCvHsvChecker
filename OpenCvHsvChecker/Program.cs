@@ -22,7 +22,7 @@ namespace OpenCvHsvChecker
         {
             Console.WriteLine("Hello World!");
 
-            string inputImagePath = "Images/gauge-8-light.jpg";
+            string inputImagePath = "Images/box_gauge.jpg";
 
             src = Cv2.ImRead(inputImagePath);
             if (src is null)
