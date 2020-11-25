@@ -19,6 +19,12 @@
     <None Update="Images\gauge-3.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Images\gauge-8-dark.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\gauge-8-light.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\gauge-8.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
