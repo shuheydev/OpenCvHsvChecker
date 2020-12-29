@@ -23,12 +23,13 @@ namespace OpenCvHsvChecker
         {
             Console.WriteLine("Hello World!");
 
-            string inputImagePath = "Images/gauge_2hand.jpg";
+            string inputImagePath = "Images/gauge-cage.jpg";
 
             _src = Cv2.ImRead(inputImagePath);
             if (_src is null)
                 return;
             Cv2.ImShow("src", _src);
+
 
             Cv2.CvtColor(_src, _hsv, ColorConversionCodes.BGR2HSV);
             Cv2.ImShow("hsv", _hsv);
@@ -114,6 +115,10 @@ namespace OpenCvHsvChecker
                 Cv2.InRange(_hsv, scalar_min, scalar_max, _mask);
             }
 
+            //画像前処理をする
+            //PreProcessing();
+
+            Cv2.ImShow(WINDOW_NAME, _mask);
 
             ////マスク画像を使って元画像にフィルタをかける
             //_dst = new Mat();
@@ -122,14 +127,13 @@ namespace OpenCvHsvChecker
 
             //ウィンドウの画像を更新
             _src.CopyTo(_dst);
-
             int HueToDisplay(int hue)
             {
-                return (hue + 180) ;
+                return (hue + 180);
             }
             int SatValToDisplay(int aaa)
             {
-                return (int)(aaa /2.55);
+                return (int)(aaa / 2.55);
             }
             Cv2.PutText(_dst, $"Hue: {HueToDisplay(_h_min)} ~ {HueToDisplay(_h_max)}", new Point(20, 20), HersheyFonts.HersheyTriplex, fontScale: 1.5, Scalar.Red, thickness: 2);
             Cv2.PutText(_dst, $"Sat: {SatValToDisplay(_s_min)} ~ {SatValToDisplay(_s_max)}", new Point(20, 70), HersheyFonts.HersheyTriplex, fontScale: 1.5, Scalar.Red, thickness: 2);
@@ -137,7 +141,18 @@ namespace OpenCvHsvChecker
 
 
             Cv2.ImShow("src", _dst);
-            Cv2.ImShow(WINDOW_NAME, _mask);
+        }
+
+        private static void PreProcessing()
+        {
+            //Cv2.GaussianBlur(_mask, _mask, new Size(4, 4), 8, 6);
+            Cv2.Erode(_mask, _mask, null);
+            //Cv2.Erode(_mask, _mask, null);
+
+            Cv2.Dilate(_mask, _mask, null);
+            //Cv2.Dilate(_mask, _mask, null);
+
+
         }
 
         private static Mat CreateMaskImage(Mat image, Scalar hsv_min, Scalar hsv_max)

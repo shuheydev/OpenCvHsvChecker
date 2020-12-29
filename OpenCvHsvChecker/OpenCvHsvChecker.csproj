@@ -43,6 +43,15 @@
     <None Update="Images\gauge-cage.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Images\gauge-light1-trim.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\gauge-light2-trim.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\gauge-light3-trim.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\gauge_2hand.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
